@@ -1,0 +1,28 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  action="">
+  <label for="name">ФИО</label> <br>
+  <input
+    formControlName="name"
+    type="text"
+  ><br>
+  <label for="position">Место работы</label><br>
+  <input
+    formControlName="position"
+    type="text"
+  ><br>
+  <label for="type">Специализация</label><br>
+  <input
+    formControlName="type"
+    type="text"
+  ><br>
+  <label for="additionalInfo">Дополнительная информация</label><br>
+  <input
+    formControlName="additionalInfo"
+    type="text"
+  ><br>
+  <button type="submit">
+    Создать
+  </button>
+</form>

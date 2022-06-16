@@ -1,0 +1,12 @@
+<div class="collection">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    action="">
+      <label for="name">Название</label><br>
+      <input formControlName="name" type="text"> <br>
+    <button type="submit">
+      Создать
+    </button>
+  </form>
+</div>
