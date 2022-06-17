@@ -16,6 +16,7 @@ export class ConsultantsComponent implements OnInit {
       name: new FormControl(null),
       position: new FormControl(null),
       type: new FormControl(null),
+      workplace: new FormControl(null),
       additionalInfo: new FormControl(null)
     })
   }

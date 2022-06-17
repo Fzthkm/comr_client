@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-app-list',
+  selector: 'app-list',
   templateUrl: './app-list.component.html',
   styleUrls: ['./app-list.component.sass']
 })
@@ -11,5 +11,4 @@ export class AppListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

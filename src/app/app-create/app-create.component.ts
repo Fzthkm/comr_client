@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-app-create',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-create.component.sass']
 })
 export class AppCreateComponent implements OnInit {
-
-  constructor() { }
+  form: FormGroup
+  constructor() {
+    this.form = new FormGroup({
+      number: new FormControl(null),
+      date: new FormControl(null)
+    })
+  }
 
   ngOnInit(): void {
   }
