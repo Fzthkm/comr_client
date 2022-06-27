@@ -1,12 +1,13 @@
-<h1>APP COMPONENT</h1>
-<div class="container">
-  <nav>
-    <ul>
-      <li routerLinkActive="active"><a routerLink="app/create">Заявки</a></li>
-      <li routerLinkActive="active"><a routerLink="organisation/create">Учреждения</a></li>
-      <li routerLinkActive="active"><a routerLink="consultants/create">Специалисты</a></li>
+<h3>Система учета заявок на оказание консультативной помощи</h3>
+<nav class="nav-extended">
+  <div class="nav-content">
+    <ul class="tabs tabs-transparent">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="tab"><a [routerLink]="['app/create']">Заявки</a></li>
+      <li routerLinkActive="active"  class="tab"><a routerLink="org/create">Учреждения</a></li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="tab"><a [routerLink]="['consultants/create']">Специалисты</a></li>
     </ul>
-  </nav>
-
+  </div>
+</nav>
+<div class="container">
   <router-outlet></router-outlet>
 </div>

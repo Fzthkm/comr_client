@@ -1,0 +1,74 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="card">
+  <div class="card-content">
+    <span class="card-title">Добавление специалистов</span>
+
+    <div class="input-field col s12">
+      <label for="name">ФИО *</label>
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        [ngClass]="{'invalid': form.get('name')?.invalid && form.get('name')?.touched}"
+      >
+      <span class="helper-text red-text" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        Необходимо указать ФИО специалиста
+      </span>
+    </div>
+
+    <div class="input-field col s12">
+      <label for="workplace">Место работы *</label>
+      <input
+        id="workplace"
+        formControlName="workplace"
+        type="text"
+        [ngClass]="{'invalid': form.get('workplace')?.invalid && form.get('workplace')?.touched}"
+      >
+      <span class="helper-text red-text" *ngIf="form.get('workplace')?.invalid && form.get('workplace')?.touched">
+        Необходимо указать место работы
+      </span>
+    </div>
+
+    <div class="input-field col s12">
+      <label for="type">Специализация *</label>
+      <input
+        id="type"
+        formControlName="type"
+        type="text"
+        [ngClass]="{'invalid': form.get('type')?.invalid && form.get('type')?.touched}"
+      >
+      <span class="helper-text red-text" *ngIf="form.get('type')?.invalid && form.get('type')?.touched">
+        Необходимо указать специализацию
+      </span>
+    </div>
+
+    <div class="input-field col s12">
+      <label for="position">Ученая степень, ученое звание</label>
+      <input
+        id="position"
+        formControlName="position"
+        type="text"
+      >
+    </div>
+
+    <div class="input-field col s12">
+      <label for="additionalInfo">Дополнительная информация</label>
+      <input
+        id="additionalInfo"
+        formControlName="additionalInfo"
+        type="text"
+      >
+    </div>
+
+    <div class="card-action">
+      <button
+        class="btn waves-effect waves-light"
+        type="submit"
+        [disabled]="form.invalid">
+        Создать
+      </button>
+    </div>
+  </div>
+</form>

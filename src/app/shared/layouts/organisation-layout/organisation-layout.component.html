@@ -1,9 +1,11 @@
 <h2>Учреждения</h2>
 <nav>
-  <ul>
-    <li><a routerLink="create">Добавить учреждение</a></li>
-    <li><a routerLink="list">Список учреждений</a></li>
-  </ul>
+  <div class="nav-content">
+    <ul>
+      <li><a [routerLink]="['/org/create']" routerLinkActive="active">Добавить учреждение</a></li>
+      <li><a [routerLink]="['/org/list']" routerLinkActive="active">Список учреждений</a></li>
+    </ul>
+  </div>
 </nav>
 
 <router-outlet></router-outlet>

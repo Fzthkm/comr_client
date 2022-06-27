@@ -1,0 +1,12 @@
+Поиск <input type="text" [(ngModel)]="text" (input)="filterByName()">
+
+<div>
+  <p>{{text}}</p>
+  <a *ngFor="let o of obj; let i = index">
+    {{o.name}}
+  </a>
+<!--  <ol>-->
+<!--    <li *ngFor="let o of obj; let i = index">{{o.name}}</li>-->
+<!--  </ol>-->
+</div>
+

@@ -1,9 +1,0 @@
-Поиск <input type="text" [(ngModel)]="text" (input)="filterByName()">
-
-<div>
-  <p>{{text}}</p>
-  <ol>
-    <li *ngFor="let o of obj; let i = index" (click)="select(o)">{{o.name}}</li>
-  </ol>
-</div>
-
