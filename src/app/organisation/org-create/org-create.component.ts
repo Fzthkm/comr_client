@@ -12,16 +12,17 @@ export class OrgCreateComponent implements OnInit {
   constructor(private orgService: OrgService) { }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl(null, [Validators.required])
-    })
+    this.formInitialize(null)
   }
 
   onSubmit() {
-    this.orgService.create(this.form.value).subscribe(
-      ()=> console.log(`Created ${this.form.value}`)
-    )
+    this.orgService.create(this.form.value).subscribe()
   }
 
-  get name() { return this.form.get('name') }
+  formInitialize(value: any){
+    this.form = new FormGroup({
+      name: new FormControl(value, [Validators.required]),
+      region: new FormControl(value, [Validators.required])
+    })
+  }
 }

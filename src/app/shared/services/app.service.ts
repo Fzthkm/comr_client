@@ -10,15 +10,27 @@ export class AppService {
   constructor(private http: HttpClient) {
   }
 
-  getAll():Observable<App[]> {
-    return this.http.get<App[]>('/api/app/list')
-  }
-
   create(app: App){
-    return this.http.post('/api/app/create', app)
+    return this.http.post('/api/app/', app)
   }
 
-  // getById(id: string):Observable<App>{
-  //   return this.http.get<App>(`/api/apps/${id}`)
-  // }
+  getAll():Observable<App[]> {
+    return this.http.get<App[]>('/api/app/')
+  }
+
+  getLast():Observable<App> {
+    return this.http.get<App>('/api/app/last')
+  }
+
+  getById(id: string):Observable<App>{
+    return this.http.get<App>(`/api/app/${id}`)
+  }
+
+  remove(id: string){
+    return this.http.delete(`/api/app/${id}`)
+  }
+
+  update(id: string, app: App){
+    return this.http.patch(`/api/app/${id}`, app)
+  }
 }

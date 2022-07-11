@@ -27,5 +27,6 @@ export interface Consultant{
 
 export interface Organisation{
   name: string
+  region: string
   _id?: string
 }

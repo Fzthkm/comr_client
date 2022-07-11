@@ -10,10 +10,10 @@ export class OrgService {
   constructor(private http: HttpClient) {
   }
   getAll():Observable<Organisation[]> {
-    return this.http.get<Organisation[]>('api/organisation/get')
+    return this.http.get<Organisation[]>('api/org/')
   }
 
   create(org: Organisation) {
-    return this.http.post('api/organisation/create', org)
+    return this.http.post('api/org/', org)
   }
 }

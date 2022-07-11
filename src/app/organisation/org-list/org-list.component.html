@@ -7,6 +7,8 @@
     [(ngModel)]="text"
     (input)="filterByName()">
 </div>
-<ol>
-  <li *ngFor="let item of list; let i = index">{{item.name}}</li>
-</ol>
+<div class="collection">
+  <a class="collection-item"
+     *ngFor="let item of list; let i = index"
+     routerLink="/org/{{item._id}}" >{{item.name}}</a>
+</div>

@@ -1,1 +1,200 @@
-<p>app-detail works!</p>
+<form
+  class="card"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="card-content">
+    <span class="card-title">Просмотр заявки</span>
+
+    <!--  Номер заявки -->
+    <div class="">
+      <label
+        for="number"
+      >
+        Номер *
+      </label>
+      <input
+        (input)="isNumber()"
+        [ngClass]="{'invalid': !numberValid}"
+        type="text"
+        id="number"
+        formControlName="number"
+      >
+
+      <span *ngIf="!numberValid"
+            class="helper-text red-text">
+      <span *ngIf="form.get('number')?.errors?.['required']">Номер не может быть пустым</span> <br>
+      <span *ngIf="!numberValid">Номер должен быть либо целым числом, либо быть записанным через дробь /</span>
+    </span>
+    </div>
+
+    <!--  Дата поступления заявки-->
+    <div class="row">
+      <div class="col s6">
+        <label
+          for="date"
+        >
+          Дата поступления заявки
+        </label>
+        <input
+          type="date"
+          id="date"
+          formControlName="date"
+        >
+      </div>
+      <div class="col s6">
+        <label>
+          Дата проведения консультации
+        </label>
+        <input type="date" formControlName="consultDate">
+      </div>
+    </div>
+
+    <!--  Организация, которая отправила заявку-->
+    <div class="row">
+      <label
+        for="organisation"
+      >
+        Вызывающая организация *
+      </label>
+      <input
+        [ngClass]="{'invalid': form.get('organisation')?.errors?.['required']}"
+        (input)="orgValidCheck()"
+        list="organisation"
+        formControlName="organisation"
+      >
+      <datalist
+        id="organisation">
+        <option *ngFor="let org of orgList; let i = index" value="{{org.name}}">
+      </datalist>
+
+      <span *ngIf="(form.get('organisation')?.errors?.['required']) || !orgValid"
+            class="helper-text red-text">
+        <span
+          *ngIf="form.get('organisation')?.errors?.['required']">Необходимо выбрать вызывающую организацию</span><br>
+        <span *ngIf="!orgValid && !form.get('organisation')?.errors?.['required']">Необходимо указать верное название организации, пожалуйста, выберите из списка</span>
+      </span>
+    </div>
+    <!-- Данные пациента-->
+    <div class="row">
+      <!-- Фамилия, имя, отчество пациента-->
+      <div class="col s9">
+        <label
+          for="patientName">
+          ФИО пациента *
+        </label>
+        <input
+          type="text"
+          id="patientName"
+          formControlName="patientName"
+          [ngClass]="{'invalid': form.get('patientName')?.invalid}"
+        >
+        <span *ngIf="form.get('patientName')?.invalid"
+              class="helper-text red-text">
+          <span *ngIf="form.get('patientName')?.errors?.['required']">Необходимо заполнить информацию о пациенте</span>
+        </span>
+      </div>
+      <!-- Год рождения-->
+      <div class="col s3">
+        <label
+          for="yearOfBirth"
+        >
+          Год рождения
+        </label>
+        <input
+          type="text"
+          id="yearOfBirth"
+          formControlName="yearOfBirth"
+          [ngClass]="{'invalid': form.get('yearOfBirth')?.invalid}"
+        >
+        <span *ngIf="form.get('yearOfBirth')?.invalid"
+              class="helper-text red-text">Введите корректный год рождения</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Диагноз-->
+      <div class="col s9">
+        <label
+          for="diagnosis"
+        >
+          Диагноз *
+        </label>
+        <input
+          type="text"
+          id="diagnosis"
+          formControlName="diagnosis"
+          [ngClass]="{'invalid': form.get('diagnosis')?.invalid}"
+        >
+        <span class="helper-text red-text"
+              *ngIf="form.get('diagnosis')?.invalid">Диагноз должен быть заполнен</span>
+      </div>
+
+      <div class="input-field col s3">
+        <label>
+          <input
+            type="checkbox"
+            formControlName="COVID">
+          <span>
+            наличие COVID
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="col s12">
+      <label
+        for="consultType">
+        Специализация *
+      </label>
+      <input
+        [ngClass]="{'invalid': form.get('consultType')?.invalid}"
+        type="text"
+        id="consultType"
+        formControlName="consultType">
+      <span class="helper-text red-text" *ngIf="form.get('consultType')?.invalid">
+          Необходимо указать специализацию
+        </span>
+    </div>
+
+    <div>
+      <label>Специалист *</label>
+      <input list="name" formControlName="consultantName"
+             [ngClass]="{'invalid': form.get('consultantName')?.errors?.['required'] || !consultantValid}"
+             (input)="consultantValidCheck()">
+      <datalist id="name">
+        <option *ngFor="let person of consultList; let i = index" value="{{person.name}}">
+      </datalist>
+      <span
+        *ngIf="(form.get('consultantName')?.errors?.['required'] || !consultantValid)"
+        class="helper-text red-text">
+        <span *ngIf="form.get('consultantName')?.errors?.['required']">Необходимо выбрать специалиста</span><br>
+        <span *ngIf="!consultantValid && !form.get('consultantName')?.errors?.['required']">Неверно указан специалист, пожалуйста, выберите из списка</span>
+      </span>
+    </div>
+
+    <div class="">
+      <label for="description">Описание</label>
+      <input type="text" id="description" formControlName="description">
+    </div>
+
+    <div class="">
+      <label for="report">Отчёт</label>
+      <input type="text" id="report" formControlName="report">
+    </div>
+
+    <div class="card-action row">
+      <button
+        type="submit"
+        class="btn waves-effect waves-light s3"
+        [disabled]="form.invalid || (!numberValid || !orgValid || !consultantValid)"
+      >
+        <i class="material-icons left">save</i>
+        Сохранить изменения
+      </button>
+      <a class="btn waves-effect waves-light"> Отменить заявку</a>
+      <a class="btn waves-effect waves-light red">
+          <i class="material-icons left">delete</i>Удалить заявку
+      </a>
+    </div>
+  </div>
+</form>

@@ -17,6 +17,10 @@ import { OrgListComponent } from './organisation/org-list/org-list.component';
 import { OrgCreateComponent } from './organisation/org-create/org-create.component';
 import { ConsultantCreateComponent } from './consultant/consultant-create/consultant-create.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AppDetailComponent} from "./app/app-detail/app-detail.component";
+import {OrgDetailComponent} from "./organisation/org-detail/org-detail.component";
+import {ConsultantDetailComponent} from "./consultant/consultant-detail/consultant-detail.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     OrgListComponent,
     OrgCreateComponent,
     ConsultantCreateComponent,
+    AppDetailComponent,
+    OrgDetailComponent,
+    ConsultantDetailComponent,
     PageNotFoundComponent,
   ],
   imports: [
@@ -39,7 +46,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

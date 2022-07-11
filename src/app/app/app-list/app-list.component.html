@@ -1,1 +1,10 @@
-LIST`1
+<!--<div *ngFor="let year of yearList">-->
+<!--  <a (click)="sortByYear(year)">{{year}}</a>-->
+  <div class="collection">
+    <a class="collection-item"
+       *ngFor="let obj of appList; let i = index"
+       routerLink="/app/{{obj._id}}">
+      {{obj.date | date:'dd.MM.yyyy'}} {{obj.organisation}} {{obj.consultType}} {{obj.patientName}}
+    </a>
+  </div>
+<!--</div>-->

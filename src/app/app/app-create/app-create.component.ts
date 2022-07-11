@@ -4,6 +4,7 @@ import {AppService} from "../../shared/services/app.service";
 import {OrgService} from "../../shared/services/org.service";
 import {ConsultantService} from "../../shared/services/consultant.service";
 import {App, Consultant} from "../../shared/interfaces";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-app-create',
@@ -14,13 +15,14 @@ export class AppCreateComponent implements OnInit {
   orgList: any
   consultList: any
   consultant!: Consultant
-  consultantValid: boolean = false
+  consultantValid!: boolean
   numberValid!: boolean
   orgValid!: boolean
 
   constructor(private appService: AppService,
               private orgService: OrgService,
-              private consultantService: ConsultantService) {
+              private consultantService: ConsultantService,
+              private router: Router) {
     this.form = new FormGroup({
       number: new FormControl(null, [Validators.required]),
       date: new FormControl(new Date().toISOString().split('T')[0], [Validators.required]),
@@ -47,7 +49,6 @@ export class AppCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
     const application: App = {
       number: this.form.value.number,
       date: this.form.value.date,
@@ -68,6 +69,31 @@ export class AppCreateComponent implements OnInit {
     }
     this.appService.create(application).subscribe(
       res => alert(`Заявка создана успешно`)
+    )
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
+  getLastRecord(){
+    this.appService.getLast().subscribe( last =>
+    {
+      this.form = new FormGroup({
+        number: new FormControl(last.number + 1, [Validators.required]),
+        date: new FormControl( last.date, [Validators.required]),
+        organisation: new FormControl(last.patientName, [Validators.required]),
+        COVID: new FormControl(last.COVID),
+        consultantName: new FormControl(last.name, [Validators.required]),
+        patientName: new FormControl(last.patientName, [Validators.required]),
+        yearOfBirth: new FormControl(last.patientYearOfBirth, [Validators.min(1900), Validators.max(new Date().getFullYear()), Validators.pattern('[0-9]{4}')]),
+        diagnosis: new FormControl(last.diagnosis, [Validators.required]),
+        consultDate: new FormControl(last.consultDate),
+        consultType: new FormControl(last.consultType, [Validators.required]),
+        description: new FormControl(last.description),
+        report: new FormControl(last.report)
+      })
+    }
     )
   }
 

@@ -5,14 +5,11 @@
 >
   <div class="card-content">
     <span class="card-title">Добавление заявки</span>
+    <a (click)="getLastRecord()" class="btn"><i class="material-icons">undo</i> Загрузить предыдущую запись</a>
 
     <!--  Номер заявки -->
     <div class="input-field">
-      <label
-        for="number"
-      >
-        Номер *
-      </label>
+
       <input
         (input)="isNumber()"
         [ngClass]="{'invalid': !numberValid && form.get('number')?.touched}"
@@ -20,7 +17,11 @@
         id="number"
         formControlName="number"
       >
-
+      <label
+        for="number"
+      >
+        Номер *
+      </label>
       <span *ngIf="!numberValid && form.get('number')?.touched"
             class="helper-text red-text">
       <span *ngIf="form.get('number')?.errors?.['required']">Номер не может быть пустым</span> <br>
@@ -135,7 +136,8 @@
           <input
             type="checkbox"
             formControlName="COVID">
-          <span>
+          <span class="red-text"
+          style="font-size: 20px">
             наличие COVID
           </span>
         </label>
