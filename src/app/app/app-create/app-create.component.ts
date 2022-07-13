@@ -82,7 +82,7 @@ export class AppCreateComponent implements OnInit {
       this.form = new FormGroup({
         number: new FormControl(last.number + 1, [Validators.required]),
         date: new FormControl( last.date, [Validators.required]),
-        organisation: new FormControl(last.patientName, [Validators.required]),
+        organisation: new FormControl(last.organisation, [Validators.required]),
         COVID: new FormControl(last.COVID),
         consultantName: new FormControl(last.name, [Validators.required]),
         patientName: new FormControl(last.patientName, [Validators.required]),
@@ -93,6 +93,10 @@ export class AppCreateComponent implements OnInit {
         description: new FormControl(last.description),
         report: new FormControl(last.report)
       })
+      console.log(last.number)
+      this.orgValidCheck()
+      this.consultantValidCheck()
+      this.isNumber(""+last.number)
     }
     )
   }
@@ -106,8 +110,7 @@ export class AppCreateComponent implements OnInit {
     this.consultantValid = !!(this.consultant)
   }
 
-  isNumber(){
-    let str = this.form.value.number
+  isNumber(str: string){
     this.numberValid = !!(Number(str.replace('/','.'))>=1)
   }
 }

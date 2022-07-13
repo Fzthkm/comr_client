@@ -5,7 +5,7 @@
 >
   <div class="card-content">
     <span class="card-title">Добавление учреждения</span>
-    <div class="input-field">
+    <div class="col s12">
       <label for="name">
         Название учреждения *
       </label>
@@ -14,15 +14,27 @@
         class="validate"
         id="name"
         type="text">
+      <span class="helper-text red-text" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        Необходимо заполнить информацию о наименовании учреждения
+      </span>
     </div>
 
-    <div class="input-field">
+    <div class="col s12">
       <label for="region">
         Регион *
       </label>
-      <input type="text" id="region" formControlName="region" class="validate">
-      <span class="helper-text red-text" *ngIf="form.get('region')?.invalid && form.get('region')?.touched">
-        Необходимо заполнить информацию о регионе
+      <input
+        type="text"
+        list="region"
+        formControlName="region"
+        (input)="regionValidCheck()"
+      >
+      <datalist id="region">
+        <option *ngFor="let org of regionList; let i = index" value="{{org}}">
+      </datalist>
+      <span class="helper-text red-text" *ngIf="form.get('region')?.touched">
+        <span *ngIf="form.get('region')?.invalid">Необходимо заполнить информацию о регионе</span>
+        <span *ngIf="!regionValid && !form.get('region')?.invalid">Необходимо выбрать из списка регионов</span>
       </span>
     </div>
 
@@ -30,7 +42,7 @@
       <button
         type="submit"
         class="btn waves-effect waves-light"
-        [disabled]="form.invalid">
+        [disabled]="form.invalid || !regionValid">
         Добавить
       </button>
     </div>

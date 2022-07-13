@@ -1,12 +1,19 @@
-Поиск <input type="text" [(ngModel)]="text" (input)="filterByName()">
+<div class="input-field">
+  <label for="search">
+    Поиск
+  </label>
+  <input
+    id="search"
+    type="text"
+    [(ngModel)]="text"
+    (input)="filterByName()">
+</div>
 
-<div>
-  <p>{{text}}</p>
-  <a *ngFor="let o of obj; let i = index">
-    {{o.name}}
+<div class="collection">
+  <a class="collection-item"
+    *ngFor="let item of list; let i = index"
+    routerLink="/consultants/{{item._id}}">
+    {{item.name}}
   </a>
-<!--  <ol>-->
-<!--    <li *ngFor="let o of obj; let i = index">{{o.name}}</li>-->
-<!--  </ol>-->
 </div>
 

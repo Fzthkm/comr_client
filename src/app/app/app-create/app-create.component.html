@@ -8,20 +8,17 @@
     <a (click)="getLastRecord()" class="btn"><i class="material-icons">undo</i> Загрузить предыдущую запись</a>
 
     <!--  Номер заявки -->
-    <div class="input-field">
-
+    <div class="col s12">
+      <label for="number">
+        Номер *
+      </label>
       <input
-        (input)="isNumber()"
+        (input)="isNumber(''+this.form.get('number'))"
         [ngClass]="{'invalid': !numberValid && form.get('number')?.touched}"
         type="text"
         id="number"
         formControlName="number"
       >
-      <label
-        for="number"
-      >
-        Номер *
-      </label>
       <span *ngIf="!numberValid && form.get('number')?.touched"
             class="helper-text red-text">
       <span *ngIf="form.get('number')?.errors?.['required']">Номер не может быть пустым</span> <br>
@@ -32,9 +29,7 @@
     <!--  Дата поступления заявки-->
     <div class="row">
       <div class="col s6">
-        <label
-          for="date"
-        >
+        <label for="date">
           Дата поступления заявки
         </label>
         <input
@@ -53,9 +48,7 @@
 
     <!--  Организация, которая отправила заявку-->
     <div class="row">
-      <label
-        for="organisation"
-      >
+      <label for="organisation">
         Вызывающая организация *
       </label>
       <input
@@ -79,7 +72,7 @@
     <!-- Данные пациента-->
     <div class="row">
       <!-- Фамилия, имя, отчество пациента-->
-      <div class="input-field col s9">
+      <div class="col s9">
         <label
           for="patientName">
           ФИО пациента *
@@ -96,10 +89,8 @@
         </span>
       </div>
       <!-- Год рождения-->
-      <div class="input-field col s3">
-        <label
-          for="yearOfBirth"
-        >
+      <div class="col s3">
+        <label for="yearOfBirth">
           Год рождения
         </label>
         <input
@@ -115,10 +106,8 @@
 
     <div class="row">
       <!-- Диагноз-->
-      <div class="input-field col s9">
-        <label
-          for="diagnosis"
-        >
+      <div class="col s9">
+        <label for="diagnosis">
           Диагноз *
         </label>
         <input
@@ -131,8 +120,7 @@
           *ngIf="form.get('diagnosis')?.invalid && form.get('diagnosis')?.touched">Диагноз должен быть заполнен</span>
       </div>
 
-      <div class="input-field col s3">
-        <label>
+      <div class="col s3">
           <input
             type="checkbox"
             formControlName="COVID">
@@ -140,12 +128,10 @@
           style="font-size: 20px">
             наличие COVID
           </span>
-        </label>
       </div>
     </div>
-      <div class="input-field col s12">
-        <label
-        for="consultType">
+      <div class="col s12">
+        <label for="consultType">
           Специализация *
         </label>
         <input
@@ -170,12 +156,12 @@
       </span>
     </div>
 
-    <div class="input-field">
+    <div class="col s12">
       <label for="description">Описание</label>
       <input type="text" id="description" formControlName="description">
     </div>
 
-    <div class="input-field">
+    <div class="col s12">
       <label for="report">Отчёт</label>
       <input type="text" id="report" formControlName="report">
     </div>

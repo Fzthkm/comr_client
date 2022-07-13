@@ -8,6 +8,17 @@ import {OrgService} from "../../shared/services/org.service";
 })
 export class OrgCreateComponent implements OnInit {
   form!: FormGroup
+  regionList = [
+    "Брестская область",
+    "Витебская область",
+    "Гомельская область",
+    "Гродненская область",
+    "Минская область",
+    "Могилевская область",
+    "г.Минск",
+    "РНПЦ"
+  ]
+  regionValid: boolean = false
 
   constructor(private orgService: OrgService) { }
 
@@ -24,5 +35,9 @@ export class OrgCreateComponent implements OnInit {
       name: new FormControl(value, [Validators.required]),
       region: new FormControl(value, [Validators.required])
     })
+  }
+
+  regionValidCheck(){
+    this.regionValid = !!this.regionList.find((region) => region === this.form.value.region)
   }
 }

@@ -8,13 +8,13 @@ import {Subscription} from "rxjs";
 })
 export class ConsultantListComponent implements OnInit {
 
-  obj: any
+  list: any
   text!: string
   aSub: Subscription
 
   constructor(private ConsultantService: ConsultantService) {
     this.aSub = this.ConsultantService.getAll().subscribe(result => {
-      this.obj = result.sort((a,b) => {
+      this.list = result.sort((a,b) => {
         const nameA = a.name.toUpperCase(); // ignore upper and lowercase
         const nameB = b.name.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -33,11 +33,7 @@ export class ConsultantListComponent implements OnInit {
 
   filterByName() {
     this.aSub = this.ConsultantService.getAll().subscribe(result => {
-      this.obj = result.filter(result => result.name.toUpperCase().includes(this.text.toUpperCase()))
+      this.list = result.filter(result => result.name.toUpperCase().includes(this.text.toUpperCase()))
     })
-  }
-
-  select(o: any) {
-    console.log(o);
   }
 }
