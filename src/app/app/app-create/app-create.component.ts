@@ -65,7 +65,7 @@ export class AppCreateComponent implements OnInit {
       consultDate: this.form.value.consultDate,
       consultType: this.form.value.consultType,
       description: this.form.value.description,
-      report: this.form.value.description
+      report: this.form.value.report
     }
     this.appService.create(application).subscribe(
       res => alert(`Заявка создана успешно`)
@@ -80,8 +80,8 @@ export class AppCreateComponent implements OnInit {
     this.appService.getLast().subscribe( last =>
     {
       this.form = new FormGroup({
-        number: new FormControl(last.number + 1, [Validators.required]),
-        date: new FormControl( last.date, [Validators.required]),
+        number: new FormControl(Number(last.number) + 1, [Validators.required]),
+        date: new FormControl(last.date, [Validators.required]),
         organisation: new FormControl(last.organisation, [Validators.required]),
         COVID: new FormControl(last.COVID),
         consultantName: new FormControl(last.name, [Validators.required]),

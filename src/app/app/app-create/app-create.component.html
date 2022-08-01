@@ -13,7 +13,7 @@
         Номер *
       </label>
       <input
-        (input)="isNumber(''+this.form.get('number'))"
+        (input)="isNumber(''+this.form.get('number')?.value)"
         [ngClass]="{'invalid': !numberValid && form.get('number')?.touched}"
         type="text"
         id="number"
@@ -121,13 +121,15 @@
       </div>
 
       <div class="col s3">
+        <label>
           <input
             type="checkbox"
             formControlName="COVID">
           <span class="red-text"
-          style="font-size: 20px">
+                style="font-size: 20px">
             наличие COVID
           </span>
+        </label>
       </div>
     </div>
       <div class="col s12">
